@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface LogRepository extends JpaRepository<LogEntity, Long> {
     List<LogEntity> findByLevel(String level);
+
+    List<LogEntity> findByMessage(String message);
 }

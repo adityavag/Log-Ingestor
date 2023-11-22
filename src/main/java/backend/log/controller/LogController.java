@@ -20,9 +20,20 @@ public class LogController {
         logService.ingestLog(log);
         return ResponseEntity.ok("Success");
     }
-
+//  Query By Level
     @GetMapping("/logs/level/{level}")
     public List<LogEntity> findByLevel(@PathVariable String level) {
         return logService.findByLevel(level);
     }
+
+//    Query By Message
+    @GetMapping("/logs/message/{message}")
+    public List<LogEntity> findByMessage(@PathVariable String message) {
+        return logService.findByMessage(message);
+    }
+//    Query By resourceId
+//    Query By timeStamp
+//    Query By traceId
+//    Query By spanId
+//    Query By commit
 }

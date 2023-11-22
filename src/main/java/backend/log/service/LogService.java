@@ -10,4 +10,6 @@ public interface LogService {
     void ingestLog(Log log);
 
     List<LogEntity> findByLevel(String level);
+
+    List<LogEntity> findByMessage(String message);
 }

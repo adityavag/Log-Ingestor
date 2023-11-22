@@ -24,4 +24,9 @@ public class LogServiceImpl implements LogService{
     public List<LogEntity> findByLevel(String level) {
         return logRepository.findByLevel(level);
     }
+
+    @Override
+    public List<LogEntity> findByMessage(String message) {
+        return logRepository.findByMessage(message);
+    }
 }
