@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LogServiceImpl implements LogService{
     @Autowired
@@ -16,5 +18,10 @@ public class LogServiceImpl implements LogService{
         LogEntity logEntity = new LogEntity();
         BeanUtils.copyProperties(log,logEntity);
         logRepository.save(logEntity);
+    }
+
+    @Override
+    public List<LogEntity> findByLevel(String level) {
+        return logRepository.findByLevel(level);
     }
 }
