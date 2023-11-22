@@ -10,7 +10,6 @@
 
    ```sh
    git clone https://github.com/adityavag/Log-Ingestor.git
-   cd Mail
 2. Build the poject using Maven:
 
    ```sh
