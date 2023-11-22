@@ -18,4 +18,8 @@
 3. Run the application:
    ```sh
    mvn spring-boot:run
-
+### API 
+1. GET  : `https://localhost:3000/logs` - Get All Logs
+2. POST : `https://localhost:3000/logs` - Ingest Log
+3. GET  : `https://localhost:3000/logs/level/{level}` - Query By Level
+4. GET  : `https://localhost:3000/logs/message/{message}` - Query By Message
