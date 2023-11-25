@@ -1,6 +1,7 @@
 package backend.log.service;
 
 import backend.log.entity.LogEntity;
+import backend.log.mapper.LogMapper;
 import backend.log.model.Log;
 import backend.log.repository.LogRepository;
 import org.springframework.beans.BeanUtils;
@@ -29,39 +30,46 @@ public class LogServiceImpl implements LogService{
     }
 
     @Override
-    public List<LogEntity> findByMessage(String message) {
-        return logRepository.findByMessage(message);
+    public List<Log> findByMessage(String message) {
+        List<LogEntity> logEntities = logRepository.findByMessage(message);
+        LogMapper mapper = new LogMapper();
+        List<Log> logs = logEntities.stream().map(mapper::map).collect(Collectors.toList());
+        return logs;
     }
 
     @Override
     public List<Log> findByResourceId(String resourceId) {
         List<LogEntity> logEntities = logRepository.findByResourceId(resourceId);
-        List<Log> logs = logEntities.stream().map(log->new Log(
-            log.getId(),
-            log.getLevel(),
-            log.getMessage(),
-            log.getResourceId(),
-            log.getTimeStamp(),
-            log.getTraceId(),
-            log.getSpanId(),
-            log.getCommit()
-        )).collect(Collectors.toList());
+        LogMapper mapper = new LogMapper();
+        List<Log> logs = logEntities.stream().map(mapper::map).collect(Collectors.toList());
+        // List<Log> logs = logEntities.stream().map(log->new Log(
+        //     log.getId(),
+        //     log.getLevel(),
+        //     log.getMessage(),
+        //     log.getResourceId(),
+        //     log.getTimeStamp(),
+        //     log.getTraceId(),
+        //     log.getSpanId(),
+        //     log.getCommit()
+        // )).collect(Collectors.toList());
         return logs;
     }
 
     @Override
     public List<Log> findByTimeStamp(Instant timeStamp) {
         List<LogEntity> logEntities = logRepository.findByTimeStamp(timeStamp);
-        List<Log> logs = logEntities.stream().map(log->new Log(
-            log.getId(),
-            log.getLevel(),
-            log.getMessage(),
-            log.getResourceId(),
-            log.getTimeStamp(),
-            log.getTraceId(),
-            log.getSpanId(),
-            log.getCommit()
-        )).collect(Collectors.toList());
+        // List<Log> logs = logEntities.stream().map(log->new Log(
+        //     log.getId(),
+        //     log.getLevel(),
+        //     log.getMessage(),
+        //     log.getResourceId(),
+        //     log.getTimeStamp(),
+        //     log.getTraceId(),
+        //     log.getSpanId(),
+        //     log.getCommit()
+        // )).collect(Collectors.toList());
+        LogMapper mapper = new LogMapper();
+        List<Log> logs = logEntities.stream().map(mapper::map).collect(Collectors.toList());
         return logs;
     }
 }

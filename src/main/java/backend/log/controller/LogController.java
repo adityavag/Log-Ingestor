@@ -29,7 +29,7 @@ public class LogController {
 
 //    Query By Message
     @GetMapping("/logs/message/{message}")
-    public List<LogEntity> findByMessage(@PathVariable String message) {
+    public List<Log> findByMessage(@PathVariable String message) {
         return logService.findByMessage(message);
     }
 //    Query By resourceId

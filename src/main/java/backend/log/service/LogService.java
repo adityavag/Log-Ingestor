@@ -12,7 +12,7 @@ public interface LogService {
 
     List<LogEntity> findByLevel(String level);
 
-    List<LogEntity> findByMessage(String message);
+    List<Log> findByMessage(String message);
 
     List<Log> findByResourceId(String resourceId);
 
