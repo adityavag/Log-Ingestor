@@ -15,32 +15,42 @@ public class LogController {
 
     @Autowired
     LogService logService;
-
+//
     @PostMapping("/logs")
     public ResponseEntity<String> ingestLog(@RequestBody Log log) {
         logService.ingestLog(log);
         return ResponseEntity.ok("Success");
     }
+//
+    @GetMapping("/logs")
+    public ResponseEntity<List<Log>> getAllLogs() {
+        List<Log> logs = logService.getAllLogs();
+        return ResponseEntity.ok(logs);
+    }
 //  Query By Level
     @GetMapping("/logs/level/{level}")
-    public List<LogEntity> findByLevel(@PathVariable String level) {
-        return logService.findByLevel(level);
+    public ResponseEntity<List<Log>> findByLevel(@PathVariable String level) {
+        List<Log> logs = logService.findByLevel(level);
+        return ResponseEntity.ok(logs);
     }
 
 //    Query By Message
     @GetMapping("/logs/message/{message}")
-    public List<Log> findByMessage(@PathVariable String message) {
-        return logService.findByMessage(message);
+    public ResponseEntity<List<Log>> findByMessage(@PathVariable String message) {
+        List<Log> logs = logService.findByMessage(message);
+        return ResponseEntity.ok(logs);
     }
 //    Query By resourceId
     @GetMapping("/logs/resource/{resourceId}]")
-    public List<Log> findByResourceId(@PathVariable String resourceId) {
-        return logService.findByResourceId(resourceId);
+    public ResponseEntity<List<Log>> findByResourceId(@PathVariable String resourceId) {
+        List<Log> logs = logService.findByResourceId(resourceId);
+        return ResponseEntity.ok(logs);
     }
 //    Query By timeStamp
     @GetMapping("/logs/timestamp/{timeStamp}")
-    public List<Log> findByTimeStamp(@PathVariable Instant timeStamp) {
-        return logService.findByTimeStamp(timeStamp);
+    public ResponseEntity<List<Log>> findByTimeStamp(@PathVariable Instant timeStamp) {
+        List<Log> logs = logService.findByTimeStamp(timeStamp);
+        return ResponseEntity.ok(logs);
     }
 //    Query By traceId
     @GetMapping("/logs/trace/{traceId}")

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,8 +24,10 @@ public class LogServiceImpl implements LogService{
     }
 
     @Override
-    public List<LogEntity> findByLevel(String level) {
-        return logRepository.findByLevel(level);
+    public List<Log> findByLevel(String level) {
+        List<LogEntity> logEntities = logRepository.findByLevel(level);
+        LogMapper logMapper = new LogMapper();
+        return logEntities.stream().map(logMapper::map).collect(Collectors.toList());
     }
 
     @Override
@@ -77,6 +78,13 @@ public class LogServiceImpl implements LogService{
     @Override
     public List<Log> findByCommit(String commit) {
         List<LogEntity> logEntities = logRepository.findByCommit(commit);
+        LogMapper logMapper = new LogMapper();
+        return logEntities.stream().map(logMapper::map).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Log> getAllLogs() {
+        List<LogEntity> logEntities = logRepository.findAll();
         LogMapper logMapper = new LogMapper();
         return logEntities.stream().map(logMapper::map).collect(Collectors.toList());
     }

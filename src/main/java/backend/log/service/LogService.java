@@ -1,8 +1,6 @@
 package backend.log.service;
 
-import backend.log.entity.LogEntity;
 import backend.log.model.Log;
-import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
 public interface LogService {
     void ingestLog(Log log);
 
-    List<LogEntity> findByLevel(String level);
+    List<Log> findByLevel(String level);
 
     List<Log> findByMessage(String message);
 
@@ -23,4 +21,6 @@ public interface LogService {
     List<Log> findBySpanId(String spanId);
 
     List<Log> findByCommit(String commit);
+
+    List<Log> getAllLogs();
 }
