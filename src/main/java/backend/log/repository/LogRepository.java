@@ -14,4 +14,10 @@ public interface LogRepository extends JpaRepository<LogEntity, Long> {
     List<LogEntity> findByResourceId(String resourceId);
 
     List<LogEntity> findByTimeStamp(Instant timeStamp);
+
+    List<LogEntity> findByTraceId(String traceId);
+
+    List<LogEntity> findBySpanId(String spanId);
+
+    List<LogEntity> findByCommit(String commit);
 }

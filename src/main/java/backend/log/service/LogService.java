@@ -17,4 +17,10 @@ public interface LogService {
     List<Log> findByResourceId(String resourceId);
 
     List<Log> findByTimeStamp(Instant timeStamp);
+
+    List<Log> findByTraceId(String traceId);
+
+    List<Log> findBySpanId(String spanId);
+
+    List<Log> findByCommit(String commit);
 }

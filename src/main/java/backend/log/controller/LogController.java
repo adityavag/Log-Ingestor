@@ -33,16 +33,31 @@ public class LogController {
         return logService.findByMessage(message);
     }
 //    Query By resourceId
-    @GetMapping("/logs/resourceid/{resourceId}]")
+    @GetMapping("/logs/resource/{resourceId}]")
     public List<Log> findByResourceId(@PathVariable String resourceId) {
         return logService.findByResourceId(resourceId);
     }
 //    Query By timeStamp
-    @GetMapping("/logs/timeStamp/{timeStamp}")
+    @GetMapping("/logs/timestamp/{timeStamp}")
     public List<Log> findByTimeStamp(@PathVariable Instant timeStamp) {
         return logService.findByTimeStamp(timeStamp);
     }
 //    Query By traceId
+    @GetMapping("/logs/trace/{traceId}")
+    public ResponseEntity<List<Log>> findByTraceId(@PathVariable String traceId) {
+        List<Log> logs = logService.findByTraceId(traceId);
+        return ResponseEntity.ok(logs);
+    }
 //    Query By spanId
+    @GetMapping("/logs/span/{spanId}")
+    public ResponseEntity<List<Log>> findBySpanId(@PathVariable String spanId) {
+        List<Log> logs = logService.findBySpanId(spanId);
+        return ResponseEntity.ok(logs);
+    }
 //    Query By commit
+    @GetMapping("/logs/commit/{commit}")
+    public ResponseEntity<List<Log>> findByCommit(@PathVariable String commit) {
+        List<Log> logs = logService.findByCommit(commit);
+        return ResponseEntity.ok(logs);
+    }
 }

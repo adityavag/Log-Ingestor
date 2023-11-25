@@ -33,26 +33,14 @@ public class LogServiceImpl implements LogService{
     public List<Log> findByMessage(String message) {
         List<LogEntity> logEntities = logRepository.findByMessage(message);
         LogMapper mapper = new LogMapper();
-        List<Log> logs = logEntities.stream().map(mapper::map).collect(Collectors.toList());
-        return logs;
+        return logEntities.stream().map(mapper::map).collect(Collectors.toList());
     }
 
     @Override
     public List<Log> findByResourceId(String resourceId) {
         List<LogEntity> logEntities = logRepository.findByResourceId(resourceId);
         LogMapper mapper = new LogMapper();
-        List<Log> logs = logEntities.stream().map(mapper::map).collect(Collectors.toList());
-        // List<Log> logs = logEntities.stream().map(log->new Log(
-        //     log.getId(),
-        //     log.getLevel(),
-        //     log.getMessage(),
-        //     log.getResourceId(),
-        //     log.getTimeStamp(),
-        //     log.getTraceId(),
-        //     log.getSpanId(),
-        //     log.getCommit()
-        // )).collect(Collectors.toList());
-        return logs;
+        return logEntities.stream().map(mapper::map).collect(Collectors.toList());
     }
 
     @Override
@@ -69,7 +57,27 @@ public class LogServiceImpl implements LogService{
         //     log.getCommit()
         // )).collect(Collectors.toList());
         LogMapper mapper = new LogMapper();
-        List<Log> logs = logEntities.stream().map(mapper::map).collect(Collectors.toList());
-        return logs;
+        return logEntities.stream().map(mapper::map).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Log> findByTraceId(String traceId) {
+        List<LogEntity> logEntities = logRepository.findByTraceId(traceId);
+        LogMapper logMapper = new LogMapper();
+        return logEntities.stream().map(logMapper::map).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Log> findBySpanId(String spanId) {
+        List<LogEntity> logEntities = logRepository.findBySpanId(spanId);
+        LogMapper logMapper = new LogMapper();
+        return logEntities.stream().map(logMapper::map).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Log> findByCommit(String commit) {
+        List<LogEntity> logEntities = logRepository.findByCommit(commit);
+        LogMapper logMapper = new LogMapper();
+        return logEntities.stream().map(logMapper::map).collect(Collectors.toList());
     }
 }
