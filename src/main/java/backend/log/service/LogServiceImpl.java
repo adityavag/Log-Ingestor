@@ -7,7 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class LogServiceImpl implements LogService{
@@ -28,5 +31,37 @@ public class LogServiceImpl implements LogService{
     @Override
     public List<LogEntity> findByMessage(String message) {
         return logRepository.findByMessage(message);
+    }
+
+    @Override
+    public List<Log> findByResourceId(String resourceId) {
+        List<LogEntity> logEntities = logRepository.findByResourceId(resourceId);
+        List<Log> logs = logEntities.stream().map(log->new Log(
+            log.getId(),
+            log.getLevel(),
+            log.getMessage(),
+            log.getResourceId(),
+            log.getTimeStamp(),
+            log.getTraceId(),
+            log.getSpanId(),
+            log.getCommit()
+        )).collect(Collectors.toList());
+        return logs;
+    }
+
+    @Override
+    public List<Log> findByTimeStamp(Instant timeStamp) {
+        List<LogEntity> logEntities = logRepository.findByTimeStamp(timeStamp);
+        List<Log> logs = logEntities.stream().map(log->new Log(
+            log.getId(),
+            log.getLevel(),
+            log.getMessage(),
+            log.getResourceId(),
+            log.getTimeStamp(),
+            log.getTraceId(),
+            log.getSpanId(),
+            log.getCommit()
+        )).collect(Collectors.toList());
+        return logs;
     }
 }
