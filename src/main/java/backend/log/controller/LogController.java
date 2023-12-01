@@ -7,12 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
 
-@RestController
+@Controller
 public class LogController {
 
     @Autowired
@@ -82,5 +83,9 @@ public class LogController {
         LOGGER.info("Query By Commit Method Invoked");
         List<Log> logs = logService.findByCommit(commit);
         return ResponseEntity.ok(logs);
+    }
+    @GetMapping("/")
+    public String getTemplate() {
+        return "index";
     }
 }
