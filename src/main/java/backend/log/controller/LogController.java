@@ -84,8 +84,5 @@ public class LogController {
         List<Log> logs = logService.findByCommit(commit);
         return ResponseEntity.ok(logs);
     }
-    @GetMapping("/")
-    public String getTemplate() {
-        return "index";
-    }
+
 }
